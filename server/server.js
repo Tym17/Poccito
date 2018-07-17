@@ -21,3 +21,6 @@ net.createServer(socket => {
 }).listen('20117');
 
 console.log('Initialized');
+setTimeout(() => {
+    socksArray.forEach(x => x.write('bonjour'))
+}, )

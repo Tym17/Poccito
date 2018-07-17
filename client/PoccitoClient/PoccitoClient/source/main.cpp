@@ -1,30 +1,26 @@
-#ifdef _WIN32
-# ifndef WIN_INC
-#  define WIN_INC
-#  include <Windows.h>
-# endif
-#endif
 
-int custom_main(int ac, char **av);
+#include <iostream>
+#include "SFML/Graphics.hpp"
 
-// Remove console when it is a release build
-#ifdef VS_RELEASE
-int CALLBACK WinMain(
-	_In_ HINSTANCE hInstance,
-	_In_ HINSTANCE hPrevInstance,
-	_In_ LPSTR     lpCmdLine,
-	_In_ int       nCmdShow
-)
+int main(int ac, char **av)
 {
-	int ac;
-	char **av = CommandLineToArgv(GetCommandLineA(), &ac);
-	if (NULL == av)
+	sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
+	sf::CircleShape shape(100.f);
+	shape.setFillColor(sf::Color::Green);
 
-	return custom_main(ac, av);
+	while (window.isOpen())
+	{
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				window.close();
+		}
+
+		window.clear();
+		window.draw(shape);
+		window.display();
+	}
+
+	return 0;
 }
-#else
-int main(int argc, char **argv)
-{
-	return custom_main(argc, argv);
-}
-#endif /* !VS_RELEASE */
