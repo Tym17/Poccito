@@ -107,3 +107,12 @@ typings/
 *.exe
 *.out
 *.app
+
+.vs
+*.ilk
+*.pdb
+*.ipdb
+*.iobj
+*.user
+*.tlog
+*.idb
