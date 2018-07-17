@@ -1,6 +1,6 @@
 #include "SFML/Graphics.hpp"
 
-int custom_main()
+int custom_main(int ac, char **av)
 {
 	sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
 	sf::CircleShape shape(100.f);
@@ -19,8 +19,6 @@ int custom_main()
 		window.draw(shape);
 		window.display();
 	}
-
-	return 0;
 
 	return 0;
 }

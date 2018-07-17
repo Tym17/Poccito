@@ -1,0 +1,12 @@
+{
+    "name" : "poccito-server",
+    "version" : "0.0.1",
+    "private" : true,
+    "author": {
+        "name" : "Tym17",
+        "url" : "http://tym17.com/"
+    },
+    "dependencies": {
+        "minimist" : "*"
+    }
+}

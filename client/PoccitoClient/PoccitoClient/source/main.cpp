@@ -5,7 +5,7 @@
 # endif
 #endif
 
-int custom_main();
+int custom_main(int ac, char **av);
 
 // Remove console when it is a release build
 #ifdef VS_RELEASE
@@ -16,11 +16,15 @@ int CALLBACK WinMain(
 	_In_ int       nCmdShow
 )
 {
-	return custom_main();
+	int ac;
+	char **av = CommandLineToArgv(GetCommandLineA(), &ac);
+	if (NULL == av)
+
+	return custom_main(ac, av);
 }
 #else
-int main()
+int main(int argc, char **argv)
 {
-	return custom_main();
+	return custom_main(argc, argv);
 }
 #endif /* !VS_RELEASE */
