@@ -1,2 +1,2 @@
 # Poccito
-Nw.js + Node.js + SFML = Online Game
+Electron + Node.js + SFML = Online Game

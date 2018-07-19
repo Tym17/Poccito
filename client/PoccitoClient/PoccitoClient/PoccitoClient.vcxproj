@@ -134,6 +134,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\ProtocolHandler.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\entity.hpp" />
+    <ClInclude Include="include\ProtocolHandler.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\npc.png" />
+    <Image Include="assets\player.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

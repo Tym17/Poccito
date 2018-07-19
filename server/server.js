@@ -1,26 +1,24 @@
 let net = require('net');
+require('./packetModels.js');
 
-let socksArray = [];
-
+let clients = [];
+let givenIds = 0;
 
 net.createServer(socket => {
-    console.log('socket connected');
-    socket.on('end', () => {
-        console.log('Disconnected');
-    });
-    socket.on('error', err => {
-        throw err;
-    });
-    socket.on('data', x => {
-        console.log('Incoming:', x);
-        socksArray.filter(gs => gs !== socket).forEach(s => {
-            s.write(x);
-        })
-    })
-    socksArray.push(socket);
+    console.log('Client connected');
+    let client = new require('./client.js');
+    client.id = givenIds++;
+    console.log('  ->  Gave Id ' + client.id);
+    client.socket = socket;
+
+    socket.on('end', client.end(client, clients));
+    socket.on('error', client.error(client, clients));
+    socket.on('data', client.data(client, clients));
+
+    clients.push(client);
 }).listen('20117');
 
 console.log('Initialized');
-setTimeout(() => {
+/*setTimeout(() => {
     socksArray.forEach(x => x.write('bonjour'))
-}, )
+}, 1000)*/
