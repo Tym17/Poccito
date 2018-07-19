@@ -1,12 +1,14 @@
 # Protocol
 
-
 ## Client to Server
 ```
 HI {NAME}
 ```
 Tells the server the client is connecting and his name.
-
+```
+MV {UP|DOWN|LEFT|RIGHT}
+```
+Tells the server in which direction the client is moving.
 
 ## Server to client
 ```
@@ -23,3 +25,8 @@ Server tells other client that a player connected
 QUIT {ID}
 ```
 Player with ID quit
+
+```
+PPOS {ID} {X} {Y}
+```
+User {ID} has a new pos

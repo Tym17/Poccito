@@ -1,5 +1,7 @@
 #include <map>
 #include <iostream>
+#include <functional>
+#include <sstream>
 #include "SFML/Graphics.hpp"
 #include "SFML/Network.hpp"
 #include "../include/entity.hpp"
@@ -28,7 +30,33 @@ int main(int ac, char **av)
 
 	std::map<int, Entity> players;
 	std::map<int, Entity> npcs;
+	std::map< std::string, std::function<void(std::vector<std::string>)>> commandHandle;
 	int myId;
+	commandHandle["HELLO"] = [&myId, username, &players](std::vector<std::string> args) {
+		myId = atoi(args[1].c_str());
+		players[myId] = {
+			myId,
+			atoi(args[2].c_str()),
+			atoi(args[3].c_str()),
+			username
+		};
+	};
+	commandHandle["NEW"] = [&players](std::vector<std::string> args) {
+		players[atoi(args[1].c_str())] = {
+			atoi(args[1].c_str()),
+			atoi(args[2].c_str()),
+			atoi(args[3].c_str()),
+			args[4].c_str()
+		};
+	};
+	commandHandle["QUIT"] = [&players](std::vector<std::string> args) {
+		players.erase(atoi(args[1].c_str()));
+	};
+	commandHandle["PPOS"] = [&players](std::vector<std::string> args) {
+		int pId = atoi(args[1].c_str());
+		players[pId].x = atoi(args[2].c_str());
+		players[pId].y = atoi(args[3].c_str());
+	};
 
 
 	// Player Spr;
@@ -68,6 +96,8 @@ int main(int ac, char **av)
 	}
 
 	// Window Loop
+	std::string cmds;
+	std::string token;
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -75,12 +105,46 @@ int main(int ac, char **av)
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
+			if (event.type == sf::Event::KeyPressed)
+			{
+				if (event.key.code == sf::Keyboard::Z)
+				{
+					protocol.move(P_UP);
+				}
+				else if (event.key.code == sf::Keyboard::S) {
+					protocol.move(P_DOWN);
+				}
+				else if (event.key.code == sf::Keyboard::Q) {
+					protocol.move(P_LEFT);
+				}
+				else if (event.key.code == sf::Keyboard::D) {
+					protocol.move(P_RIGHT);
+				}
+			}
 		}
 		if (!protocol.recieve()) {
 			return -1;
 		}
 		while (protocol.haveCmds()) {
-			std::cout << "Recv: " << protocol.extract() << std::endl;
+			cmds = protocol.extract();
+			std::stringstream ss(cmds);
+			std::vector<std::string> args;
+
+			while (std::getline(ss, token, ' ')) {
+				args.push_back(token);
+			}
+			if (args[0] == "HELLO") {
+				commandHandle["HELLO"](args);
+			}
+			else if (args[0] == "NEW") {
+				commandHandle["NEW"](args);
+			}
+			else if (args[0] == "QUIT") {
+				commandHandle["QUIT"](args);
+			}
+			else if (args[0] == "PPOS") {
+				commandHandle["PPOS"](args);
+			}
 		}
 
 

@@ -3,8 +3,8 @@ let net = require('net');
 require('./packetModels.js');
 
 let clients = {
-    all : []
-};
+    all: []
+}
 let givenIds = 0;
 
 net.createServer(socket => {
@@ -13,6 +13,10 @@ net.createServer(socket => {
     client.id = givenIds++;
     console.log('  ->  Gave Id ' + client.id);
     client.socket = socket;
+    clients.all.forEach(c => {
+        client.socket.write(`NEW ${c.id} ${c.x} ${c.y} ${c.name}\0`);
+        console.log('populating...');
+    })
     clients.all.push(client);
 
     socket.on('end', client.end(client, clients));
