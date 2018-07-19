@@ -1,21 +1,24 @@
+let client_inst = new require('./client.js');
 let net = require('net');
 require('./packetModels.js');
 
-let clients = [];
+let clients = {
+    all : []
+};
 let givenIds = 0;
 
 net.createServer(socket => {
     console.log('Client connected');
-    let client = new require('./client.js');
+    let client = new client_inst();
     client.id = givenIds++;
     console.log('  ->  Gave Id ' + client.id);
     client.socket = socket;
+    clients.all.push(client);
 
     socket.on('end', client.end(client, clients));
     socket.on('error', client.error(client, clients));
     socket.on('data', client.data(client, clients));
 
-    clients.push(client);
 }).listen('20117');
 
 console.log('Initialized');

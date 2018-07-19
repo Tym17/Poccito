@@ -24,7 +24,11 @@ bool ProtocolHandler::recieve()
 	std::size_t received;
 	char tmpBuf[BUFFER_LENGTH] = { 0 };
 
-	if (socket.receive(tmpBuf, BUFFER_LENGTH, received) != sf::Socket::Done) {
+	auto status = socket.receive(tmpBuf, BUFFER_LENGTH, received);
+	if (status == sf::Socket::NotReady) {
+		return true;
+	}
+	if (status == sf::Socket::Disconnected || status == sf::Socket::Error) {
 		std::cerr << "Couldn't receive." << std::endl;
 		return false;
 	}

@@ -24,7 +24,7 @@ int main(int ac, char **av)
 
 
 	// Window/Scene preparation
-	sf::RenderWindow window(sf::VideoMode(200, 200), "Poccito");
+	sf::RenderWindow window(sf::VideoMode(500, 500), "Poccito");
 
 	std::map<int, Entity> players;
 	std::map<int, Entity> npcs;
@@ -61,15 +61,11 @@ int main(int ac, char **av)
 		std::cerr << "Error connecting server" << std::endl;
 		return -1;
 	}
+	socket.setBlocking(false);
 	ProtocolHandler protocol(socket);
 	if (!protocol.greet(username)) {
 		return -1;
 	}
-	if (!protocol.recieve())
-	{
-		return -1;
-	}
-	std::cout << protocol.extract() << std::endl;
 
 	// Window Loop
 	while (window.isOpen())
@@ -80,6 +76,13 @@ int main(int ac, char **av)
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
+		if (!protocol.recieve()) {
+			return -1;
+		}
+		while (protocol.haveCmds()) {
+			std::cout << "Recv: " << protocol.extract() << std::endl;
+		}
+
 
 		window.clear();
 		// Draw all those things
