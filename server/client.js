@@ -1,3 +1,4 @@
+const config = require('./config.json');
 
 module.exports = function(){
     this.x = 50;
@@ -16,11 +17,11 @@ module.exports = function(){
 
             switch (args[0].toUpperCase()) {
                 case 'HI':
-                    client.socket.write(`HELLO ${client.id} ${client.x} ${client.y}\0`);
+                    client.socket.write(`HELLO ${client.id} ${client.x} ${client.y}${config.endofpacket}`);
                     client.name = args[1];
                     console.log('Responded Hello');
                     others.forEach(o => {
-                        o.socket.write(`NEW ${client.id} ${client.x} ${client.y} ${client.name}\0`);
+                        o.socket.write(`NEW ${client.id} ${client.x} ${client.y} ${client.name}${config.endofpacket}`);
                         console.log(`Told user ${o.id} about the newbie`);
                     });
                     break;
@@ -40,7 +41,7 @@ module.exports = function(){
                             break;
                     }
                     clients.all.forEach(c => {
-                        c.socket.write(`PPOS ${client.id} ${client.x} ${client.y}\0`);
+                        c.socket.write(`PPOS ${client.id} ${client.x} ${client.y}${config.endofpacket}`);
                     });
                     console.log('Moved');
                     break;
@@ -50,10 +51,14 @@ module.exports = function(){
 
     this.error = function (client, clients) {
         return (err) => {
-            console.log('Client had an error', err);
+            if( err.code === 'ECONNRESET') {
+                console.log('Client connection reseted.');
+            } else {
+                console.log('Client had an error', err);
+            }
             clients.all = clients.all.filter(goodClient => goodClient !== client);
             clients.all.forEach(c => {
-                c.socket.write(`QUIT ${client.id}\0`);
+                c.socket.write(`QUIT ${client.id}${config.endofpacket}`);
             });
         };
     },
@@ -63,7 +68,7 @@ module.exports = function(){
             console.log('Disconnected');
             clients.all = clients.all.filter(goodClient => goodClient !== client);
             clients.all.forEach(c => {
-                c.socket.write(`QUIT ${client.id}\0`);
+                c.socket.write(`QUIT ${client.id}${config.endofpacket}`);
             });
         };
     }

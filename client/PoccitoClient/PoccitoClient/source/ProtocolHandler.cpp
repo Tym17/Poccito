@@ -54,10 +54,11 @@ bool ProtocolHandler::recieve()
 
 		std::string token;
 
-		while (std::getline(ss, token, '\0'))
+		while (std::getline(ss, token, '\n'))
 		{
 			std::cout << "[Rcv] " << token << std::endl;
 			cmds.push(token);
+			ss.clear();
 		}
 	}
 

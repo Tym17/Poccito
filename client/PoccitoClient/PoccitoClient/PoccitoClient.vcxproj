@@ -144,6 +144,9 @@
     <Image Include="assets\npc.png" />
     <Image Include="assets\player.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Font Include="assets\Gaegu-Regular.ttf" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

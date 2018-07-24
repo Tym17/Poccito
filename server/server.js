@@ -1,4 +1,5 @@
 let client_inst = new require('./client.js');
+const config = require('./config.json');
 let net = require('net');
 require('./packetModels.js');
 
@@ -14,7 +15,7 @@ net.createServer(socket => {
     console.log('  ->  Gave Id ' + client.id);
     client.socket = socket;
     clients.all.forEach(c => {
-        client.socket.write(`NEW ${c.id} ${c.x} ${c.y} ${c.name}\0`);
+        client.socket.write(`NEW ${c.id} ${c.x} ${c.y} ${c.name}${config.endofpacket}`);
         console.log('populating...');
     })
     clients.all.push(client);
@@ -23,7 +24,7 @@ net.createServer(socket => {
     socket.on('error', client.error(client, clients));
     socket.on('data', client.data(client, clients));
 
-}).listen('20117');
+}).listen(config.port);
 
 console.log('Initialized');
 /*setTimeout(() => {

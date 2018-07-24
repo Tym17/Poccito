@@ -58,7 +58,6 @@ int main(int ac, char **av)
 		players[pId].y = atoi(args[3].c_str());
 	};
 
-
 	// Player Spr;
 	sf::Texture playerTex;
 	sf::Sprite playerSpr;
@@ -146,7 +145,6 @@ int main(int ac, char **av)
 				commandHandle["PPOS"](args);
 			}
 		}
-
 
 		window.clear();
 		// Draw all those things
