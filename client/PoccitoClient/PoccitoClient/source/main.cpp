@@ -32,6 +32,7 @@ int main(int ac, char **av)
 	std::map<int, Entity> npcs;
 	std::map< std::string, std::function<void(std::vector<std::string>)>> commandHandle;
 	int myId;
+	// Player related commands
 	commandHandle["HELLO"] = [&myId, username, &players](std::vector<std::string> args) {
 		myId = atoi(args[1].c_str());
 		players[myId] = {
@@ -42,8 +43,9 @@ int main(int ac, char **av)
 		};
 	};
 	commandHandle["NEW"] = [&players](std::vector<std::string> args) {
-		players[atoi(args[1].c_str())] = {
-			atoi(args[1].c_str()),
+		int pId = atoi(args[1].c_str());
+		players[pId] = {
+			pId,
 			atoi(args[2].c_str()),
 			atoi(args[3].c_str()),
 			args[4].c_str()
@@ -57,6 +59,21 @@ int main(int ac, char **av)
 		players[pId].x = atoi(args[2].c_str());
 		players[pId].y = atoi(args[3].c_str());
 	};
+	// NPC related commands
+	commandHandle["NPC"] = [&npcs](std::vector<std::string> args) {
+		int nId = atoi(args[1].c_str());
+		npcs[nId] = {
+			nId,
+			atoi(args[2].c_str()),
+			atoi(args[3].c_str()),
+			args[4].c_str()
+		};
+	};
+	commandHandle["NPOS"] = [&npcs](std::vector<std::string> args) {
+		int nId = atoi(args[1].c_str());
+		npcs[nId].x = atoi(args[2].c_str());
+		npcs[nId].y = atoi(args[3].c_str());
+	};
 
 	// Font
 	sf::Font font;
@@ -69,6 +86,10 @@ int main(int ac, char **av)
 	text.setFont(font);
 	text.setCharacterSize(15);
 	text.setFillColor(sf::Color::White);
+	sf::Text npcText;
+	npcText.setFont(font);
+	npcText.setCharacterSize(15);
+	npcText.setFillColor(sf::Color::Green);
 
 	// Player Spr;
 	sf::Texture playerTex;
@@ -144,6 +165,9 @@ int main(int ac, char **av)
 			while (std::getline(ss, token, ' ')) {
 				args.push_back(token);
 			}
+			if (args.size() == 0) {
+				continue;
+			}
 			if (args[0] == "HELLO") {
 				commandHandle["HELLO"](args);
 			}
@@ -155,6 +179,12 @@ int main(int ac, char **av)
 			}
 			else if (args[0] == "PPOS") {
 				commandHandle["PPOS"](args);
+			}
+			else if (args[0] == "NPC") {
+				commandHandle["NPC"](args);
+			}
+			else if (args[0] == "NPOS") {
+				commandHandle["NPOS"](args);
 			}
 		}
 
@@ -168,6 +198,9 @@ int main(int ac, char **av)
 			window.draw(playerSpr);
 		}
 		for (auto &it : npcs) {
+			npcText.setString(it.second.name);
+			npcText.setPosition(it.second.x - (npcText.getGlobalBounds().width / 2), it.second.y - 17);
+			window.draw(npcText);
 			npcSpr.setPosition(it.second.x, it.second.y);
 			window.draw(npcSpr);
 		}
