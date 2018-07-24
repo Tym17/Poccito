@@ -1,0 +1,16 @@
+{
+  "name": "poccito-launcher",
+  "version": "0.0.1",
+  "private": true,
+  "author": {
+      "name": "Tym17",
+      "url": "http://tym17.com/"
+  },
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^2.0.5"
+  }
+}
