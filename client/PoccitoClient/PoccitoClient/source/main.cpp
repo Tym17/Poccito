@@ -58,6 +58,18 @@ int main(int ac, char **av)
 		players[pId].y = atoi(args[3].c_str());
 	};
 
+	// Font
+	sf::Font font;
+	if (!font.loadFromFile("assets/Gaegu-Regular.ttf"))
+	{
+		std::cerr << "Could not load fond." << std::endl;
+		return -1;
+	}
+	sf::Text text;
+	text.setFont(font);
+	text.setCharacterSize(15);
+	text.setFillColor(sf::Color::White);
+
 	// Player Spr;
 	sf::Texture playerTex;
 	sf::Sprite playerSpr;
@@ -149,6 +161,9 @@ int main(int ac, char **av)
 		window.clear();
 		// Draw all those things
 		for (auto &it : players) {
+			text.setString(it.second.name);
+			text.setPosition(it.second.x - (text.getGlobalBounds().width / 2), it.second.y - 17);
+			window.draw(text);
 			playerSpr.setPosition(it.second.x, it.second.y);
 			window.draw(playerSpr);
 		}
