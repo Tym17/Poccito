@@ -1,0 +1,23 @@
+{
+    "name": "poccito-buildtools",
+    "version": "0.0.1",
+    "private": false,
+    "author": {
+        "name": "Tym17",
+        "url": "http://tym17.com/"
+    },
+    "config": {
+        "msredis": "../vcredist_x86.exe",
+        "out_directory": "../",
+        "directory_name": "Poccito",
+        "assets_source": "../client/Release/assets/"
+    },
+    "scripts": {
+        "build": "node builder.js",
+        "release": "node packer.js",
+        "clean": "node cleaner.js"
+    },
+    "dependencies": {
+        "chalk": "^2.4.1"
+    }
+}

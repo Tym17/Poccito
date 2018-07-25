@@ -1,5 +1,5 @@
 {
     "debugmode": false,
-    "msredis": "../vcredist_x86.exe",
-    "game": "../client/Release/PoccitoClient.exe"
+    "msredis": "./install/vcredist_x86.exe",
+    "game": "./bin/PoccitoClient.exe"
 }
