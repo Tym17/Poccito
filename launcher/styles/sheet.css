@@ -1,0 +1,138 @@
+@font-face {
+    font-family: 'Gaegu';
+    src: url('./Gaegu-Regular.ttf') format('truetype');
+}
+
+body
+{
+    background-color: #CC5030;
+    color: white;
+}
+
+h1
+{
+    font-family: 'Gaegu', sans-serif;
+    margin-left: 30px;
+    font-size: 70px;
+    margin-bottom: 0;
+}
+
+.heading
+{
+    width: 100%;
+}
+
+.version
+{
+    font-family: sans-serif;
+    margin-top: -20px;
+    margin-left: 170px;
+    color: rgb(241, 158, 137);
+}
+
+.title
+{
+    background: rgb(223, 96, 64);
+    position: fixed;
+    top: 0;
+    text-align: right;
+    width: 100%;
+    margin-left: -8px;
+    margin-right: -8px;
+    margin-top: -1px;
+    -webkit-user-select: none;
+    -webkit-app-region: drag;
+}
+
+.title button
+{
+    background: rgb(236, 138, 114);
+    color: white;
+    border: none;
+    width: 45px;
+    -webkit-app-region: no-drag;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in;
+}
+
+.title button:hover
+{
+    background: rgb(240, 216, 210);
+    color: rgb(223, 12, 12);
+    cursor: pointer;
+}
+
+.content
+{
+    margin-left: -8px;
+    margin-right: -8px;
+    padding: 0px 20px;
+    box-sizing: border-box;
+}
+
+.content label
+{
+    color: white;
+    font-family: sans-serif;
+}
+
+.content input
+{
+    box-sizing: border-box;
+    background: rgb(223, 96, 64);
+    border: none;
+    padding: 10px;
+    color: white;
+    width: 100%;
+    margin-top: 2px;
+    margin-bottom: 15px;
+}
+
+.content input::placeholder
+{
+    color: rgb(241, 158, 137);
+}
+
+.actions
+{
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.actions button
+{
+    border: none;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in;
+    width: 47%;
+    height: 2.5em;
+    box-sizing: border-box;
+    background: rgb(241, 158, 137);
+    color: #CC5030;
+    margin: auto;
+}
+
+.actions button:hover
+{
+    cursor: pointer;
+    background: rgb(167, 58, 31);
+    color: rgb(241, 158, 137);
+}
+
+.footer a
+{
+    color: rgb(236, 138, 114);
+    font-family: sans-serif;
+}
+
+.footer
+{
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    margin-left: -8px;
+    margin-right: -8px;
+    padding-bottom: 5px;
+}

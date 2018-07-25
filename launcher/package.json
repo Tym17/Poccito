@@ -1,7 +1,7 @@
 {
   "name": "poccito-launcher",
   "version": "0.0.1",
-  "private": true,
+  "private": false,
   "author": {
       "name": "Tym17",
       "url": "http://tym17.com/"
