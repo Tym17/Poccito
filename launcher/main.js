@@ -1,4 +1,5 @@
 const { app, BrowserWindow } = require('electron');
+const config = require('./config.json');
 
 let mainWindow;
 
@@ -6,11 +7,13 @@ function createWindow() {
     mainWindow = new BrowserWindow({
         width: 300,
         height: 450,
-        frame: false,
-        resizable: false,
+        frame: config.debugmode,
+        resizable: config.debugmode,
         center: true
     });
-    mainWindow.setMenu(null);
+    if (!config.debugmode) {
+        mainWindow.setMenu(null);
+    }
     mainWindow.loadFile('index.html');
     mainWindow.on('closed', () => {
         mainWindow = null;

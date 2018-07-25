@@ -1,4 +1,5 @@
 {
-    "msredis": "path/to/redistributable",
-    "game": "path/to/game"
+    "debugmode": false,
+    "msredis": "../vcredist_x86.exe",
+    "game": "../client/Release/PoccitoClient.exe"
 }
