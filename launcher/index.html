@@ -9,7 +9,7 @@
 
 <body>
   <div class="title">
-    <button onClick="alert('close')">X</button>
+    <button onClick="launch.quit()">X</button>
   </div>
   <div class="heading">
     <h1>Poccito</h1>
@@ -17,32 +17,29 @@
   </div>
   <div class="content">
     <label>Nickname
-      <input type="text" placeholder="Nick Halden"></input>
+      <input type="text" placeholder="Nick Halden" id="nickname"></input>
     </label>
     <label>Server IP
-      <input type="text" placeholder="127.0.0.1"></input>
+      <input type="text" placeholder="127.0.0.1" id="ip"></input>
     </label>
     <label>Port
-      <input type="number" placeholder="20117"></input>
+      <input type="number" placeholder="20117" id="port"></input>
     </label>
     <div class="actions">
-      <button onclick="renderer.launchRedis()" class="missing">Missing Dll ?</button>
-      <button onClick="renderer.launchGame()" class="go">Connect</button>
+      <button onclick="launch.msRedis()" class="missing">Missing a Dll ?</button>
+      <button onClick="launch.game()" class="go">Connect</button>
     </div>
   </div>
   <div class="footer">
-    <a onClick="openTymcom()" href="#">Tym17.com</a>
+    <a onClick="launch.tymcom()" href="#">Tym17.com</a>
   </div>
   <script>
     // You can also require other files to run in this process
-    require('./renderer.js')
+    require('./launch.js')
     let package = require('./package.json');
     document.getElementById('version').innerHTML = package.version;
 
-    const shell = require('electron').shell;
-    const openTymcom = () => {
-      shell.openExternal('http://tym17.com');
-    }
+    
   </script>
 </body>
 

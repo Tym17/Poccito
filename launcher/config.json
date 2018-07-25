@@ -1,3 +1,4 @@
 {
-    "ms-redis": "path/to/redistributable"
+    "msredis": "path/to/redistributable",
+    "game": "path/to/game"
 }
