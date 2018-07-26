@@ -1,7 +1,7 @@
 # Poccito
 > Electron + Node.js + SFML = Online Game
 
-Proof of concept of a small online game featuring nicknamed players & non playable characters. Server uses node.js for scalability and portability, Launcher uses electron for the ease of styling and GUI needs, client uses C++/SFML for a very fast rendering without additional operations.
+Proof of concept of a small online game featuring nicknamed players & non playable characters. Server uses node.js for scalability and portability, Launcher uses electron for the ease of styling and GUI needs, client uses C++/SFML for a very fast rendering without additional operations. The launcher also features a setup file in case the player doesn't have the proper dlls on his computer.
 
 ## License
 Overall code is licensed under MIT license however font files are licensed under Open Font License and come from Google fonts.
