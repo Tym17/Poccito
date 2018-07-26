@@ -19,7 +19,11 @@ yarn start
 Additional informations in [the server's README.md](https://github.com/Tym17/Poccito/blob/master/server/README.md)
 
 ## How do I edit the client ?
-Open the visual studio solution and build from there. Make sure to rebuild on release mode once you are done and to run the build script to bundle the client with the launcher. You might also need to reconfigure the location for the SFML Libraries/includes.
+Open the visual studio solution and build from there. Make sure to rebuild on release mode once you are done and to run the build script to bundle the client with the launcher. You might also need to reconfigure the location for the SFML Libraries/includes. The client uses SFML 2.5
+
+
+[Tutorial on how to use SFML with Visual Studio](https://www.sfml-dev.org/tutorials/2.5/start-vc.php)
+
 
 ## How do I edit the launcher ?
 Navigate to the launcher's directory and run
