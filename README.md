@@ -10,13 +10,13 @@ Overall code is licensed under MIT license however font files are licensed under
 [Get the lastest release](https://github.com/Tym17/Poccito/releases)
 
 ## How do I host a server ?
-Make sure the ports of your machine are open and then move into the server's directory and run
+Git clone or copy the server's directory and make sure the ports of your machine are open and then move into the server's directory and run this inside of the server's directory
 ```
 yarn install
 yarn start
 ```
 
-Additional informations in [the server's README.md](todo)
+Additional informations in [the server's README.md](https://github.com/Tym17/Poccito/blob/master/server/README.md)
 
 ## How do I edit the client ?
 Open the visual studio solution and build from there. Make sure to rebuild on release mode once you are done and to run the build script to bundle the client with the launcher.
@@ -30,7 +30,7 @@ yarn start
 
 The launcher is a basic electron project, so it works the same way the electron starter works.
 
-Additional informations in [the launcher's README.md](todo)
+Additional informations in [the launcher's README.md](https://github.com/Tym17/Poccito/blob/master/launcher/README.md)
 
 ## How do I bundle everything for my players ?
 Make sure your launcher is ready and your client compiled on release with all the good dlls next to it if you're linking the SFML dynamically and navigate to the buildtools directory and run
@@ -39,4 +39,4 @@ yarn install
 yarn build
 ```
 
-Additional informations in [the buildtools' README.md](todo)
+Additional informations in [the buildtools' README.md](https://github.com/Tym17/Poccito/blob/master/buildtools/README.md)
