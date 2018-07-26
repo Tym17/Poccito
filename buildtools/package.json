@@ -10,14 +10,16 @@
         "msredis": "../vcredist_x86.exe",
         "out_directory": "../",
         "directory_name": "Poccito",
-        "assets_source": "../client/Release/assets/"
+        "assets_source": "../client/Release/assets/",
+        "bin_name": "poccito",
+        "rcedit": "../rcedit-x64.exe"
     },
     "scripts": {
         "build": "node builder.js",
-        "release": "node packer.js",
-        "clean": "node cleaner.js"
+        "clean": "rm -rf ../build"
     },
     "dependencies": {
+        "asar": "^0.14.3",
         "chalk": "^2.4.1"
     }
 }
